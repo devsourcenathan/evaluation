@@ -31,6 +31,6 @@ class AdminController extends Controller
 
         $personal->save();
 
-        return redirect('/admin');
+        return redirect('/admin')->with("success", "L'admin a ete ajoute");
     }
 }

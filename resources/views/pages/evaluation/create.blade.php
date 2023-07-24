@@ -67,7 +67,12 @@
 
                 <div class="col-md-4"><label> Atteinte des objectifs </label>
                 
-
+                  <br/><br/>
+                  <div class="icheck-primary d-inline">
+                    <input type="radio" checked id="cha" name="objectifs" value="majeure">
+                    <label for="cha">Pas d'incidence
+                    </label>
+                  </div>
                   <br><br>
                   <div class="icheck-primary d-inline">
                     <input type="radio" id="objectif3" name="objectifs" value="mineure">
@@ -92,6 +97,13 @@
 
                 <div class="col-md-3"><label> Comportement </label><br><br>
 
+                  <div class="icheck-primary d-inline">
+                    <input type="radio" checked id="ch0" name="comportement" value="rien">
+                    <label for="ch0">Pas d'incidence
+                    </label>
+                  </div>
+
+                  <br/><br/>
 
                   <div class="icheck-primary d-inline">
                     <input type="radio" checked id="ch7" name="comportement" value="rien">

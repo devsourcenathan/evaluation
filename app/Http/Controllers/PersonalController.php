@@ -15,6 +15,40 @@ class PersonalController extends Controller
         return view('pages.personal.index', compact('personals'));
     }
 
+    function show($id)
+    {
+        $personal = User::find($id);
+
+
+        return view('pages.personal.show', compact('personal'));
+    }
+
+    function update(Request $request)
+    {
+        $personal = User::find($request->id);
+        $personal->name = $request->name;
+        $personal->first_name = $request->first_name;
+        $personal->matriculate = $request->matriculate;
+        $personal->note = $request->note;
+        $personal->gratification = $request->gratification;
+        if (isset($request->grade)) {
+            $personal->grade = $request->grade;
+        }
+
+        if (isset($request->categorie)) {
+            $personal->categorie = $request->categorie;
+        }
+        $personal->email = $request->email;
+
+        if (isset($request->password)) {
+            $personal->password = Hash::make($request->password);
+        }
+
+        $personal->save();
+
+        return redirect('/personal')->with('success', 'Le personnel a bien été modifié');
+    }
+
     function evaluation()
     {
         $personals = User::where("type", "personal")->get();
@@ -109,7 +143,7 @@ class PersonalController extends Controller
         $personal->id_evaluator = Auth::user()->id;
 
         $personal->save();
-        return redirect('/evaluation');
+        return redirect('/evaluation')->with('success', 'Le personnel a bien été evalué');
     }
 
     function evaluate($id)
@@ -137,6 +171,6 @@ class PersonalController extends Controller
 
         $personal->save();
 
-        return redirect('/personal');
+        return redirect('/personal')->with('success', 'Le personnel a bien été créé');
     }
 }

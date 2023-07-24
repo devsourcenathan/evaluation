@@ -66,6 +66,16 @@
       "responsive": true,
     });
   });
+
+  @if(session('success'))
+    $(document).Toasts('create', {
+        class: 'bg-success',
+        title: 'Toast Title',
+        body: '{{ session('success') }}',
+        autohide: true,
+        delay: 5000
+    });
+  @endif
 </script>
 </body>
 </html>

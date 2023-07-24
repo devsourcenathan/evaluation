@@ -24,17 +24,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth']);
 
-Route::group(['prefix' => 'personal'], function () {
+Route::group(['prefix' => 'personal', 'middleware' => 'auth'], function () {
 
     Route::get('/', [PersonalController::class, 'index']);
     Route::get('/create', [PersonalController::class, 'create']);
     Route::post('/', [PersonalController::class, 'store']);
     Route::get('/{id}', [PersonalController::class, 'show']);
-    Route::put('/{id}', [PersonalController::class, 'update']);
+    Route::put('/', [PersonalController::class, 'update']);
     Route::delete('/{id}', [PersonalController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('/', [AdminController::class, 'index']);
     Route::get('/create', [AdminController::class, 'create']);
@@ -44,7 +44,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::delete('/{id}', [AdminController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'evaluator'], function () {
+Route::group(['prefix' => 'evaluator', 'middleware' => 'auth'], function () {
 
     Route::get('/', [EvaluatorController::class, 'index']);
     Route::get('/create', [EvaluatorController::class, 'create']);
@@ -54,7 +54,7 @@ Route::group(['prefix' => 'evaluator'], function () {
     Route::delete('/{id}', [EvaluatorController::class, 'destroy']);
 });
 
-Route::group(['prefix' => 'evaluation'], function () {
+Route::group(['prefix' => 'evaluation', 'middleware' => 'auth'], function () {
 
     Route::get('/', [PersonalController::class, 'evaluation']);
     Route::get('/{id}', [PersonalController::class, 'evaluate']);

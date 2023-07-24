@@ -31,6 +31,6 @@ class EvaluatorController extends Controller
 
         $personal->save();
 
-        return redirect('/evaluator');
+        return redirect('/evaluator')->with('success', 'L\'evaluateur a bien été créé');
     }
 }
