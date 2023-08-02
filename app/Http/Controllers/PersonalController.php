@@ -67,58 +67,111 @@ class PersonalController extends Controller
         $comportement = $request->comportement;
         $objectifs = $request->objectifs;
 
-        if ($comportement === 'juste' && $objectifs === 'mineure') {
-            $values = 'caa';
-            $note -= 0.5;
-            $graduation -= 5;
-        }
+        if (!isset($request->comportement_2)) {
+            if ($comportement === 'juste' && $objectifs === 'mineure') {
+                $values = 'caa';
+                $note -= 0.5;
+                $graduation -= 5;
+            }
 
-        if ($comportement === 'conforme' && $objectifs === 'mineure') {
-            $values = 'caa+';
-            $note -= 0.25;
-            $graduation -= 5;
-        }
+            if ($comportement === 'conforme' && $objectifs === 'mineure') {
+                $values = 'caa+';
+                $note -= 0.25;
+                $graduation -= 5;
+            }
 
-        if ($comportement === 'rien' && $objectifs === 'mineure') {
-            $values = 'cco-';
-            $note = $note;
-        }
+            if ($comportement === 'rien' && $objectifs === 'mineure') {
+                $values = 'cco-';
+                $note = $note;
+            }
 
-        if ($comportement === 'juste' && $objectifs === 'majeure') {
-            $values = 'cco';
-            $note = $note;
-        }
+            if ($comportement === 'juste' && $objectifs === 'majeure') {
+                $values = 'cco';
+                $note = $note;
+            }
 
-        if ($comportement === 'conforme' && $objectifs === 'majeure') {
-            $values = 'cco+';
-            $note = $note;
-            $graduation += 5;
-        }
+            if ($comportement === 'conforme' && $objectifs === 'majeure') {
+                $values = 'cco+';
+                $note = $note;
+                $graduation += 5;
+            }
 
-        if ($comportement === 'rien' && $objectifs === 'majeure') {
-            $values = 'csu';
-            $note += 0.25;
-            $graduation += 5;
-        }
+            if ($comportement === 'rien' && $objectifs === 'majeure') {
+                $values = 'csu';
+                $note += 0.25;
+                $graduation += 5;
+            }
 
-        if ($comportement === 'juste' && $objectifs === 'ensemble') {
-            $values = 'csu+';
-            $note += 0.5;
-            $graduation += 5;
-        }
+            if ($comportement === 'juste' && $objectifs === 'ensemble') {
+                $values = 'csu+';
+                $note += 0.5;
+                $graduation += 5;
+            }
 
-        if ($comportement === 'conforme' && $objectifs === 'ensemble') {
-            $values = 'cee';
-            $note += 0.75;
-            $graduation += 10;
-        }
+            if ($comportement === 'conforme' && $objectifs === 'ensemble') {
+                $values = 'cee';
+                $note += 0.75;
+                $graduation += 10;
+            }
 
-        if ($comportement === 'juste' && $objectifs === 'ensemble') {
-            $values = 'rien';
-            $note += 1;
-            $graduation += 10;
-        }
+            if ($comportement === 'juste' && $objectifs === 'ensemble') {
+                $values = 'rien';
+                $note += 1;
+                $graduation += 10;
+            }
+        } else {
+            if ($request->comportement_2 === 'caa') {
+                $values = 'caa';
+                $note -= 0.5;
+                $graduation -= 5;
+            }
 
+            if ($request->comportement_2 === 'caa+') {
+                $values = 'caa+';
+                $note -= 0.25;
+                $graduation -= 5;
+            }
+
+            if ($request->comportement_2 === 'cco-') {
+                $values = 'cco-';
+                $note = $note;
+            }
+
+            if ($request->comportement_2 === 'cco') {
+                $values = 'cco';
+                $note = $note;
+            }
+
+            if ($request->comportement_2 === 'cco+') {
+                $values = 'cco+';
+                $note = $note;
+                $graduation += 5;
+            }
+
+            if ($request->comportement_2 == 'csu') {
+                $values = 'csu';
+                $note += 0.25;
+                $graduation += 5;
+            }
+
+            if ($request->comportement_2 === 'csu+') {
+                $values = 'csu+';
+                $note += 0.5;
+                $graduation += 5;
+            }
+
+            if ($request->comportement_2 === 'cee') {
+                $values = 'cee';
+                $note += 0.75;
+                $graduation += 10;
+            }
+
+            if ($request->comportement_2 === 'cee+') {
+                $values = 'rien';
+                $note += 1;
+                $graduation += 10;
+            }
+        }
 
         if (isset($request->sanctions)) {
             foreach ($request->sanctions as $sanction) {
