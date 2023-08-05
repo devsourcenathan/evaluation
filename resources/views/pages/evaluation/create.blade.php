@@ -1,268 +1,376 @@
 @extends('partials.main')
 
 @section('content')
-    <!-- general form elements -->
+    <style>
+        .selected {
+            background-color: rgb(183, 183, 155) !important;
+        }
+    </style>
+
     <form action="/evaluation" method="POST">
         @csrf
         <input type="hidden" name="id_user" value="{{ $id }}">
-        <div class="card card-primary">
+        <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Formulaire d'evaluation du Personnel</h3>
+                <a href="/evaluation" class="btn btn-icon icon-left btn-primary"><i
+                        class="fas fa-arrow-alt-circle-left
+                    "></i> Retour</a>
+                &nbsp;&nbsp;
+                <h4 style="text-align: center; font-size: 28px">Formulaire d'evaluation du Personnel</h4>
             </div>
-
-            <!-- /.card-header -->
             <div class="card-body">
-                <div class="card-success">
-                    <div class="card-header">
-                        <h4>Elements de base de l'evaluation </h4>
-                    </div>
-                    <br>
+                <div class="section-title mt-0" style="font-weight: bold; font-size: 20px">Elements de base de l'evaluation
+                </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th scope="col" rowspan="2">Atteinte des objectifs</th>
+                        <th scope="col" colspan="3" style="text-align: center">Respect des valeurs (Comportement)</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Juste conforme</th>
+                        <th scope="col">Conforme</th>
+                        <th scope="col">Modèle</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td><input type="radio" name="objectif_2" value="juste" style="display: none;">Atteinte d'une
+                                mineure partie des objectifs</td>
+                            <td><input type="radio" name="comportement_2" value="caa"
+                                    style="display: none;">Contribution à
+                                améliorer (CAA)</td>
+                            <td><input type="radio" name="comportement_2" value="caa+"
+                                    style="display: none;">Contribution à
+                                améliorer<sup>+</sup> (CAA<sup>+</sup>)</td>
+                            <td><input type="radio" name="comportement_2" value="cco-"
+                                    style="display: none;">Contribution
+                                Correcte<sup>-</sup> (CCO<sup>-</sup>)</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="objectif_2" value="conforme" style="display: none;">Atteinte
+                                d'une
+                                majeure partie des objectifs</td>
+                            <td><input type="radio" name="comportement_2" value="cco"
+                                    style="display: none;">Contribution
+                                correcte (CCO)</td>
+                            <td><input type="radio" name="comportement_2" value="cco+"
+                                    style="display: none;">Contribution
+                                Correcte<sup>+</sup> (CCO<sup>+</sup>)</td>
+                            <td><input type="radio" name="comportement_2" value="csu"
+                                    style="display: none;">Contribution
+                                supérieure (CSU)</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="objectif_2" value="modele" style="display: none;">Atteinte de
+                                l'ensemble des objectifs</td>
+                            <td><input type="radio" name="comportement_2" value="csu+"
+                                    style="display: none;">Contribution
+                                supérieure<sup>+</sup> (CSU<sup>+</sup>)</td>
+                            <td><input type="radio" name="comportement_2" value="cee"
+                                    style="display: none;">Contribution
+                                exceptionnelle (CEE)</td>
+                            <td><input type="radio" name="comportement_2" value="cee+"
+                                    style="display: none;">Contribution
+                                exceptionnelle<sup>+</sup> (CEE<sup>+</sup>)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-
-                    <div class="row">
-                        <div class="col-4">
-                            <label> Atteinte des objectifs </label><br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="1" name="abjectif_2" value="mineure">
-                                <label for="1">Atteinte d'une mineure partie des objectifs</label>
-                            </div>
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="3" name="abjectif_2" value="majeure">
-                                <label for="3">Atteinte d'une majeure partie des objectifs </label>
-                            </div>
-
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="4" name="abjectif_2" value="ensemble">
-                                <label for="4">Atteinte de l'ensemble des objectifs</label>
-                            </div>
-                        </div>
-                        <div class="col-8">
-                            <h4 class="text-center"> Respect des valeurs (Comportement)</h4>
-                            <div class="row">
-                                <div class="col-4">
-                                    <h5><b>Juste conforme</b></h5>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="c1" name="comportement_2" value="caa">
-                                        <label for="c1">Contribution a ameliorer</label>
-                                    </div>
-                                    <br>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="c2" name="comportement_2" value="cco">
-                                        <label for="c2">Contribution a correcte</label>
-                                    </div>
-                                    <br>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="c3" name="comportement_2" value="csu+">
-                                        <label for="c3">Contribution superieur+</label>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <h5><b>Conforme</b></h5>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="c4" name="comportement_2" value="caa+">
-                                        <label for="c4">Contribution a ameliorer +</label>
-                                    </div>
-                                    <br>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="c5" name="comportement_2" value="cco+">
-                                        <label for="c5">Contribution a correcte+</label>
-                                    </div>
-                                    <br>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="c6" name="comportement_2" value="cee">
-                                        <label for="c6">Contribution exceptionnelle</label>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <h5><b>Modele</b></h5>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="c7" name="comportement_2" value="coo-">
-                                        <label for="c7">Contribution correcte -</label>
-                                    </div>
-                                    <br>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="c8" name="comportement_2" value="csu">
-                                        <label for="c8">Contribution superieure</label>
-                                    </div>
-                                    <br>
-                                    <div class="icheck-primary d-inline">
-                                        <input type="radio" id="c9" name="comportement_2" value="cee+">
-                                        <label for="c9">Contribution exceptionnelle+</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+            <div class="card-body">
+                <div class="section-title mt-0" style="font-weight: bold; font-size: 20px">Incidence de des retards et des
+                    absences
 
                 </div>
-                <div class="card-success">
-                    <div class="card-header">
-                        <label>
-                            <h4>Incidence de des retards et des absences </h4>
-                        </label>
-                    </div><br>
+                <table class="table table-bordered">
+                    <tr style="text-align: center">
+                        <th scope="col">Retards / Repos medicaux / hospitalisations / evacuation sanitaire</th>
+                        <th scope="col">Atteinte des objectifs</th>
+                        <th scope="col">Comportement</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td><input type="radio" name="retards"
+                                    value="02 réductions ou 1 suppression de la prime d'assiduité" style="display: none;">02
+                                réductions ou 1 suppression de la prime d'assiduité</td>
+                            <td><input type="radio" name="objectifs" value="majeure" style="display: none;">Pas
+                                d'incidence
+                            </td>
+                            <td><input type="radio" name="comportement" value="rien" style="display: none;">Pas
+                                d'incidence
+                            </td>
 
-                    <div class="row">
-                        <div class="col-md-5"><label>Retards/ Repos Médicaux/ hospitalisations / Évacuation
-                                sanitaire</label><br><br>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="retards"
+                                    value="Entre 03 et 04 réductions ou 02 suppression de la prime
+                            d'assiduité"
+                                    style="display: none;">Entre 03 et 04 réductions ou 02 suppression de la prime
+                                d'assiduité</td>
+                            <td><input type="radio" name="objectifs" value="majeure" style="display: none;">Pas
+                                d'incidence
+                            </td>
+                            <td><input type="radio" name="comportement" value="conforme"
+                                    style="display: none;">Comportement
+                                conforme</td>
 
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="radioPrimary1" name="retards" value="02_01">
-                                <label for="radioPrimary1">
-                                    02 réductions ou 1 suppression de la prime d'assiduité
-                                </label>
-                            </div>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="retards"
+                                    value="A partir de 05 réductions ou 03 suppression de la prime
+                                    d'assiduité"
+                                    style="display: none;">A partir de 05 réductions ou 03 suppression de la prime
+                                d'assiduités</td>
+                            <td><input type="radio" name="objectifs" value="mineure" style="display: none;">Atteinte
+                                d'une
+                                mineure partie des objectifs</td>
+                            <td><input type="radio" name="comportement" value="juste"
+                                    style="display: none;">Comportement
+                                juste conforme</td>
 
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="radioPrimary2" name="retards" value="03_04_02">
-                                <label for="radioPrimary2">Entre 03 et 04 réductions ou 02 suppression de la prime
-                                    d'assiduité
-                                </label>
-                            </div>
+                        </tr>
 
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="radioPrimary3" name="retards" value="05_03">
-                                <label for="radioPrimary3">A partir de 05 réductions ou 03 suppression de la prime
-                                    d'assiduité
-                                </label>
-                            </div>
+                        <tr>
+                            <td><input type="radio" name="retards"
+                                    value="Absence justifiée pour maladie de 01 à 10 jours" style="display: none;">Absence
+                                justifiée pour maladie de 01 à 10 jours</td>
+                            <td><input type="radio" name="objectifs" value="majeure" style="display: none;">Pas
+                                d'incidence</td>
+                            <td><input type="radio" name="comportement" value="rien" style="display: none;">Pas
+                                d'incidence</td>
 
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="radioPrimary4" name="retards" value="01_10">
-                                <label for="radioPrimary4">Absence justifiée pour maladie de 01 à 10 jours
-                                </label>
-                            </div>
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="radioPrimary5" name="retards" value="11_20">
-                                <label for="radioPrimary5">Absence justifiée pour maladie de 11 à 20 jours
-                                </label>
-                            </div>
+                        </tr>
 
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="radioPrimary6" name="retards" value="_20">
-                                <label for="radioPrimary6">Absence justifiée pour maladie de de plus de 20 jours
-                                </label>
-                            </div>
+                        <tr>
+                            <td><input type="radio" name="retards"
+                                    value="A partir de 05 réductions ou 03 suppression de la prime
+                                    d'assiduité"
+                                    style="display: none;">Absence justifiée pour maladie de 11 à 20 jours</td>
+                            <td><input type="radio" name="objectifs" value="majeure" style="display: none;">Atteinte
+                                d'une
+                                majeure partie des objectifs</td>
+                            <td><input type="radio" name="comportement" value="conforme"
+                                    style="display: none;">Comportement
+                                conforme</td>
+                        </tr>
 
-                        </div>
+                        <tr>
+                            <td><input type="radio" name="retards"
+                                    value="Absence justifiée pour maladie de de plus de 20 jours"
+                                    style="display: none;">Absence justifiée pour maladie de de plus de 20 jours</td>
+                            <td><input type="radio" name="objectifs" value="mineure" style="display: none;">Atteinte
+                                d'une
+                                mineure partie des objectifs</td>
+                            <td><input type="radio" name="comportement" value="juste"
+                                    style="display: none;">Comportement
+                                juste conforme</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-
-                        <div class="col-md-4"><label> Atteinte des objectifs </label>
-
-                            <br /><br />
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" checked id="cha" name="objectifs" value="majeure">
-                                <label for="cha">Pas d'incidence
-                                </label>
-                            </div>
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="objectif3" name="objectifs" value="mineure">
-                                <label for="objectif3">Atteinte d'une mineure partie des objectifs
-                                </label>
-                            </div>
-
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="objectif5" name="objectifs" value="majeure">
-                                <label for="objectif5">Atteinte d'une majeure partie des objectifs
-                                </label>
-                            </div>
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="objectif6" name="objectifs" value="ensemble">
-                                <label for="objectif6">Atteinte de l'ensemble des objectifs
-                                </label>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-3"><label> Comportement </label><br><br>
-
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" checked id="ch0" name="comportement" value="rien">
-                                <label for="ch0">Pas d'incidence
-                                </label>
-                            </div>
-
-                            <br /><br />
-
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" checked id="ch7" name="comportement" value="rien">
-                                <label for="ch7">Comportement modele
-                                </label>
-                            </div>
-
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="ch8" name="comportement" value="conforme">
-                                <label for="ch8">Comportement conforme
-                                </label>
-                            </div>
-
-                            <br><br>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="ch9" name="comportement" value="juste">
-                                <label for="ch9">Comportement juste conforme
-                                </label>
-                            </div>
-
-
-                        </div>
-                    </div>
+            <div class="card-body">
+                <div class="section-title mt-0" style="font-weight: bold; font-size: 20px">Incidence des sanctions
 
                 </div>
-                <br><br>
+                <table class="table table-bordered">
+                    <tr style="text-align: center">
+                        <th scope="col">Sanctions</th>
+                        <th scope="col">Baisse de la note</th>
+                        <th scope="col">Baisse du taux de gratification</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" id="1" name="sanctions[]" value="avertissement"
+                                    style="display: none;">Avertissement</td>
+                            <td>-1
+                            </td>
+                            <td>-10%
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="3" name="sanctions[]" value="blame"
+                                    style="display: none;">Entre 03 et 04 réductions ou 02 suppression de la
+                                Blame</td>
+                            <td>
+                                -1.5
+                            </td>
+                            <td>
+                                -15%
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" id="4" name="sanctions[]"
+                                    value="mise_a_pieds"style="display: none;">Mise a pied</td>
+                            <td>-2</td>
+                            <td>-20%</td>
+
+                        </tr>
+
+                        <tr>
+                            <td><input type="checkbox" id="w" name="sanctions[]"
+                                    value="sanction_2_degre"style="display: none;">sanction de 2eme degre(retard a
+                                l'avancement, retrogradation)</td>
+                            <td>-4</td>
+                            <td>-40%</td>
+
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
 
-        <div class="card-success">
-            <div class="card-header">
-                <h4>Incidence de la sanction sur l'evaluation generale </h4>
+            <div class="card-footer row">
+
+                <button type="reset" class="btn btn-block btn-outline-danger col-5">Annuler</button>
+                <button type="submit" class="btn btn-block btn-outline-primary col-5  offset-2">Enregistrer</button>
             </div>
-            <br>
-
-
-
-            <label> Sanctions </label><br><br>
-
-            <div class="icheck-primary d-inline">
-                <input type="checkbox" id="1" name="sanctions[]" value="avertissement">
-                <label for="1">Avertissement</label>
-            </div>
-            <br><br>
-            <div class="icheck-primary d-inline">
-                <input type="checkbox" id="3" name="sanctions[]" value="blame">
-                <label for="3">Blame </label>
-            </div>
-
-            <br><br>
-            <div class="icheck-primary d-inline">
-                <input type="checkbox" id="4" name="sanctions[]" value="mise_a_pieds">
-                <label for="4">Mise a pied</label>
-            </div>
-
-            <br><br>
-            <div class="icheck-primary d-inline">
-                <input type="checkbox" id="w" name="sanctions[]" value="sanction_2_degre">
-                <label for="w">sanction de 2eme degre(retard a l'avancement, retrogradation)</label>
-            </div>
-        </div>
-        <div class="row">
-
-            <button type="submit" class="btn btn-block btn-outline-primary col-5">Enregistrer</button>
-            <button type="reset" class="btn btn-block btn-outline-danger col-5 offset-2">Annuler</button>
-        </div>
-
-        <br><br>
         </div>
     </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            //table 1
+            let objectifTds = document.querySelectorAll("td input[name='objectif_2']");
+            let comportementTds = document.querySelectorAll("td input[name='comportement_2']");
+
+            for (let i = 0; i < objectifTds.length; i++) {
+
+                let td = objectifTds[i].parentNode;
+
+                td.addEventListener("click", function() {
+
+                    // Si le td est déjà sélectionné, le désélectionner
+                    if (td.classList.contains("selected")) {
+                        td.classList.remove("selected");
+                        td.childNodes[0].checked = false
+                    } else {
+                        // Désélectionner tous les tds d'objectif_2
+                        for (let j = 0; j < objectifTds.length; j++) {
+                            objectifTds[j].parentNode.classList.remove("selected");
+                            objectifTds[j].checked = false
+                        }
+
+                        // Sélectionner le td cliqué
+                        td.classList.add("selected");
+                        td.childNodes[0].checked = true
+                    }
+                });
+            }
+
+            for (let i = 0; i < comportementTds.length; i++) {
+                let td = comportementTds[i].parentNode;
+
+                td.addEventListener("click", function() {
+                    // Si le td est déjà sélectionné, le désélectionner
+                    if (td.classList.contains("selected")) {
+                        td.classList.remove("selected");
+                        td.childNodes[0].checked = false
+                    } else {
+                        // Désélectionner tous les tds de comportement_2
+                        for (let j = 0; j < comportementTds.length; j++) {
+                            comportementTds[j].parentNode.classList.remove("selected");
+                            comportementTds[j].checked = false
+                        }
+
+                        // Sélectionner le td cliqué
+                        td.classList.add("selected");
+                        td.childNodes[0].checked = true
+                    }
+                });
+            }
+
+
+            //table 2
+            let retardTds = document.querySelectorAll("td input[name='retards']");
+            let objectifsTds = document.querySelectorAll("td input[name='objectifs']");
+            let comportementsTds = document.querySelectorAll("td input[name='comportement']");
+
+            for (let i = 0; i < objectifsTds.length; i++) {
+                let td = objectifsTds[i].parentNode;
+
+                td.addEventListener("click", function() {
+                    // Si le td est déjà sélectionné, le désélectionner
+                    if (td.classList.contains("selected")) {
+                        td.classList.remove("selected");
+                        td.childNodes[0].checked = false
+                    } else {
+                        // Désélectionner tous les tds d'objectif_2
+                        for (let j = 0; j < objectifsTds.length; j++) {
+                            objectifsTds[j].parentNode.classList.remove("selected");
+                            objectifsTds[j].checked = false
+                        }
+
+                        // Sélectionner le td cliqué
+                        td.classList.add("selected");
+                        td.childNodes[0].checked = true
+                    }
+                });
+            }
+
+            for (let i = 0; i < retardTds.length; i++) {
+                let td = retardTds[i].parentNode;
+
+                td.addEventListener("click", function() {
+                    // Si le td est déjà sélectionné, le désélectionner
+                    if (td.classList.contains("selected")) {
+                        td.classList.remove("selected");
+                        td.childNodes[0].checked = false
+                    } else {
+                        // Désélectionner tous les tds de comportement_2
+                        for (let j = 0; j < retardTds.length; j++) {
+                            retardTds[j].parentNode.classList.remove("selected");
+                            retardTds[j].checked = false
+                        }
+
+                        // Sélectionner le td cliqué
+                        td.classList.add("selected");
+                        td.childNodes[0].checked = true
+                    }
+                });
+            }
+
+            for (let i = 0; i < comportementsTds.length; i++) {
+                let td = comportementsTds[i].parentNode;
+
+                td.addEventListener("click", function() {
+                    // Si le td est déjà sélectionné, le désélectionner
+                    if (td.classList.contains("selected")) {
+                        td.classList.remove("selected");
+                        td.childNodes[0].checked = false
+                    } else {
+                        // Désélectionner tous les tds de comportement_2
+                        for (let j = 0; j < comportementsTds.length; j++) {
+                            comportementsTds[j].parentNode.classList.remove("selected");
+                            comportementsTds[j].checked = false
+                        }
+
+                        // Sélectionner le td cliqué
+                        td.classList.add("selected");
+                        td.childNodes[0].checked = true
+                    }
+                });
+            }
+
+            let sanctionsCheckboxes = document.querySelectorAll("input[name='sanctions[]']");
+
+            for (let i = 0; i < sanctionsCheckboxes.length; i++) {
+                let checkbox = sanctionsCheckboxes[i];
+                let td = checkbox.parentNode;
+
+                td.addEventListener("click", function() {
+                    // Inverser l'état de la case à cocher
+                    checkbox.checked = !checkbox.checked;
+
+                    // Mettre en surbrillance le td si la case à cocher est cochée
+                    if (checkbox.checked) {
+                        td.classList.add("selected");
+
+                    } else {
+                        td.classList.remove("selected");
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

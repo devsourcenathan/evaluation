@@ -1,335 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+<!-- index.html  21 Nov 2019 03:44:50 GMT -->
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Liste du Personnel</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Systeme d'évaluation du Personnel</title>
+    <!-- General CSS Files -->
+    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 
-    <link rel="icon" type="image/png" sizes="80x80" href="{{ asset('dist/img/logo.png') }}">
-    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/bundles/datatables/datatables.min.css') }}">
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+        href="{{ asset('assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-    <div class="wrapper">
-
-        {{-- <!-- logo de chargement -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="dist/img/logo1.png" alt="BEAC" height="120" width="120">
-  </div> --}}
-
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
-                </li>
-
-            </ul>
-
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Navbar Search -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                                    aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-
-                <!-- Messages Dropdown Menu
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-             Message Start
-            <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            Message End
+<body>
+    {{-- <div class="loader"></div> --}}
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            <div class="navbar-bg"></div>
+            <nav class="navbar navbar-expand-lg main-navbar sticky">
+                <div class="form-inline mr-auto">
+                    <ul class="navbar-nav mr-3">
+                        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
+									collapse-btn">
+                                <i data-feather="align-justify"></i></a></li>
 
 
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            Message Start
-            <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-             Message End
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-             Message Start
-            <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-             Message End
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
--->
+                    </ul>
+                </div>
+                <ul class="navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown"
+                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            <figure class="avatar mr-2 avatar-sm">
+                                <img alt="image" src="{{ asset('assets/img/avatar.jpg') }}" class="">
+                                <i class="avatar-presence online"></i>
+                            </figure>
 
-                <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
+                            <span class="d-sm-none d-lg-inline-block"></span>
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"
-                        role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar elevation-4">
-            <!-- Brand Logo -->
-
-            <a href="#" class="brand-link text-center">
-                <img src="dist/img/logo1.png" alt="Systeme d'evaluation du Personnel"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Systeme d'evaluation<br>du Personnel</span>
-            </a>
-
-            <br><br><br><br>
-
-            <!-- Sidebar Menu -->
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                    <li class="nav-item menu-open">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Tableau de Bord
-                                <i class="right "></i>
-                            </p>
-                        </a>
-
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="/evaluation" class="nav-link">
-                            <i class="nav-icon fas fa-edit"></i>
-                            <p>
-                                Evaluation
-
-                            </p>
-                        </a>
-
-                    </li>
-                    <li class="nav-item">
-                        <a href="/personal" class="nav-link">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>
-                                Personnel
-                                <i class="fas fa-angle-right right"></i>
-                            </p>
-                        </a>
-
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="/personal/create" class="nav-link">
-                                    <i class="nav-icon fas fa-user-plus"></i>
-                                    <p>
-                                        Ajouter un Membre
-                                    </p>
+                        <div class="dropdown-menu dropdown-menu-right pullDown">
+                            <div class="dropdown-title">Salut, {{ Auth::user()->name }}</div>
+                            {{-- <a href="profile.html" class="dropdown-item has-icon"> <i class="far
+										fa-user"></i>
+                                Profile
+                            </a> --}}
+                            <div class="dropdown-divider"></div>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="route('logout')"
+                                    onclick="event.preventDefault();
+                                            this.closest('form').submit();"
+                                    class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
+                                    Se deconnecter
                                 </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="/personal" class="nav-link">
-                                    <i class="nav-icon fas fa-list-ol"></i>
-                                    <p>
-                                        Liste du Personnel
-                                    </p>
-                                </a>
-                            </li>
-
-
-                        </ul>
-
-
+                            </form>
+                        </div>
                     </li>
-
-
-                    <li class="nav-item">
-                        <a href="pages/evaluateur.html" class="nav-link">
-                            <i class="nav-icon fas fa-tag"></i>
-                            <p>
-                                Evaluateur
-                                <i class="fas fa-angle-right right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="/evaluator/create" class="nav-link">
-                                    <p>
-                                        <i class="nav-icon fas fa-user-plus"></i>
-                                        Ajouter un Evaluateur
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="/evaluator" class="nav-link">
-                                    <i class="nav-icon fas fa-list-ol"></i>
-                                    <p>
-                                        Liste des Evaluateurs
-                                    </p>
-                                </a>
-                            </li>
-
-
-                        </ul>
-                    </li>
-
-
-
-
-
-                    <li class="nav-item">
-                        <a href="pages/admin.html" class="nav-link">
-
-                            <i class="nav-icon fas fa-user-secret"></i>
-                            <p>
-                                Aministrateur
-                                <i class="right fas fa-angle-right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="/admin/create" class="nav-link">
-                                    <i class="nav-icon fas fa-user-plus"></i>
-                                    <p>
-                                        Ajouter un Admin
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="/admin" class="nav-link">
-                                    <i class="nav-icon fas fa-list-ol"></i>
-                                    <p>
-                                        Liste des Administrateurs
-                                    </p>
-                                </a>
-
-
-                            </li>
-
-
-                        </ul>
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-
-                            <p>
-
-                            </p>
-
-                    </li>
-
-
-
-
-
-
-
                 </ul>
             </nav>
-            <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-    </aside>
+            <div class="main-sidebar sidebar-style-2">
+                <aside id="sidebar-wrapper">
+                    <div class="sidebar-brand">
+                        <a href="index.html"> <img alt="image" src="{{ asset('assets/img/logo1.png') }}"
+                                class="header-logo" />
+                            <span class="logo-name">Evaluation</span>
+                        </a>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li class="menu-header">Main</li>
+                        @if (Auth::user()->role == 'personal')
+                            <li class="dropdown active">
+                                <a href="index.html" class="nav-link">
+                                    <i data-feather="monitor"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (Auth::user()->role !== 'personal')
+                            <li class="{{ request()->is('/') ? 'dropdown active' : 'dropdown' }}">
+                                <a href="/" class="nav-link">
+                                    <i data-feather="monitor"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+
+                            <li class="{{ request()->is('evaluation') ? 'dropdown active' : 'dropdown' }}">
+                                <a href="/evaluation" class="nav-link">
+                                    <i data-feather="grid"></i>
+                                    <span>Evaluation</span>
+                                </a>
+                            </li>
+
+                            <li class="{{ request()->is('personal') ? 'dropdown active' : 'dropdown' }}">
+                                <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                                        data-feather="layout"></i><span>Personnel</span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link" href="/personal/create">Ajouter un personnel</a></li>
+                                    <li><a class="nav-link" href="/personal">Liste du personnel</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="{{ request()->is('evaluator') ? 'dropdown active' : 'dropdown' }}">
+                                <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                                        data-feather="command"></i><span>Evaluateurs</span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link" href="/evaluator/create">Ajouter un evaluateur</a></li>
+                                    <li><a class="nav-link" href="/evaluator">Liste des evaluateurs</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="{{ request()->is('admin') ? 'dropdown active' : 'dropdown' }}">
+                                <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                                        data-feather="user-check"></i><span>Administrateurs</span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link" href="/admin/create">Ajouter un administrateur</a></li>
+                                    <li><a class="nav-link" href="/admin">Liste des administrateurs</a></li>
+                                </ul>
+                            </li>
+                        @endif
+                    </ul>
+                </aside>
+            </div>

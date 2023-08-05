@@ -1,81 +1,37 @@
-
-
-        
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |
-   
-    <div class="float-right d-none d-sm-inline-block">
-      
+<footer class="main-footer">
+    <div class="footer-left">
+        <a href="/">Systeme d'evaluation du personnel</a>
     </div>
-  </footer>
+    <div class="footer-right">
+    </div>
+</footer>
 </div>
-<!-- ./wrapper -->
+</div>
 
-<!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
-<script src="{{asset("plugins/jquery/jquery.min.js")}}"></script>
-<script src="{{asset("plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
-<script src="{{asset("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}"></script>
-<script src="{{asset("dist/js/adminlte.js")}}"></script>
-<script src="{{asset("plugins/jquery-mousewheel/jquery.mousewheel.js")}}"></script>
-<script src="{{asset("plugins/raphael/raphael.min.js")}}"></script>
-<script src="{{asset("plugins/jquery-mapael/jquery.mapael.min.js")}}"></script>
-<script src="{{asset("plugins/jquery-mapael/maps/usa_states.min.js")}}"></script>
-<script src="{{asset("plugins/chart.js/Chart.min.js")}}"></script>
-<script src="{{asset("dist/js/demo.js")}}"></script>
-<script src="{{asset("dist/js/pages/dashboard2.js")}}"></script>
+<script src="{{ asset('assets/js/app.min.js') }}"></script>
 
-
-<script src="{{asset("plugins/datatables/jquery.dataTables.min.js")}}"></script>
-<script src="{{asset("plugins/datatables-bs4/js/dataTables.bootstrap4.min.js")}}"></script>
-<script src="{{asset("plugins/datatables-responsive/js/dataTables.responsive.min.js")}}"></script>
-<script src="{{asset("plugins/datatables-responsive/js/responsive.bootstrap4.min.js")}}"></script>
-<script src="{{asset("plugins/datatables-buttons/js/dataTables.buttons.min.js")}}"></script>
-<script src="{{asset("plugins/datatables-buttons/js/buttons.bootstrap4.min.js")}}"></script>
-<script src="{{asset("plugins/jszip/jszip.min.js")}}"></script>
-<script src="{{asset("plugins/pdfmake/pdfmake.min.js")}}"></script>
-<script src="{{asset("plugins/pdfmake/vfs_fonts.js")}}"></script>
-<script src="{{asset("plugins/datatables-buttons/js/buttons.html5.min.js")}}"></script>
-<script src="{{asset("plugins/datatables-buttons/js/buttons.print.min.js")}}"></script>
-<script src="{{asset("plugins/datatables-buttons/js/buttons.colVis.min.js")}}"></script>
-<script src="{{asset("dist/js/adminlte.min.js")}}"></script>
+<!-- Page Specific JS File -->
+<script src="{{ asset('assets/bundles/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/vfs_fonts.js') }}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/js/page/datatables.js') }}"></script>
+<!-- General JS Scripts -->
 
 
-
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-
-  @if(session('success'))
-    $(document).Toasts('create', {
-        class: 'bg-success',
-        title: 'Toast Title',
-        body: '{{ session('success') }}',
-        autohide: true,
-        delay: 5000
-    });
-  @endif
-</script>
+<!-- Page Specific JS File -->
+<script src="{{ asset('assets/js/page/index.js') }}"></script>
+<!-- Template JS File -->
+<script src="{{ asset('assets/js/scripts.js') }}"></script>
+<!-- Custom JS File -->
+<script src="{{ asset('assets/js/custom.js') }}"></script>
 </body>
+
+
+<!-- index.html  21 Nov 2019 03:47:04 GMT -->
+
 </html>

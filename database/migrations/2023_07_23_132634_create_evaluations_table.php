@@ -17,6 +17,12 @@ class CreateEvaluationsTable extends Migration
             $table->id();
             $table->integer('id_personal');
             $table->integer('id_evaluator');
+            $table->float('note');
+            $table->float('taux');
+            $table->text('objectifs');
+            $table->text('respects');
+            $table->text('incidences');
+            $table->text('sanctions');
             $table->timestamps();
         });
     }
