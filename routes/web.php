@@ -63,8 +63,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'user.type']], funct
     Route::get('/create', [AdminController::class, 'create']);
     Route::post('/', [AdminController::class, 'store']);
     Route::get('/{id}', [AdminController::class, 'show']);
-    Route::put('/{id}', [AdminController::class, 'update']);
-    Route::delete('/{id}', [AdminController::class, 'destroy']);
+    Route::post('/update_store', [AdminController::class, 'update']);
+    Route::get('/update/{id}', [AdminController::class, 'update_form']);
+    Route::get('/delete/{id}', [AdminController::class, 'destroy']);
 });
 
 Route::group(['prefix' => 'evaluator', 'middleware' => ['auth', 'user.type']], function () {
@@ -81,6 +82,7 @@ Route::group(['prefix' => 'evaluation', 'middleware' => ['auth', 'user.type']], 
 
     Route::get('/', [PersonalController::class, 'evaluation']);
     Route::get('/{id}', [PersonalController::class, 'evaluate']);
+    Route::get('/show/{id}', [PersonalController::class, 'show_evaluations']);
     Route::post('/', [PersonalController::class, 'register_evaluate']);
 });
 require __DIR__ . '/auth.php';

@@ -7,29 +7,30 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
-                <thead>
-                    <tr>
-                        <th>Matricule</th>
-                        <th>Nom(s)</th>
-                        <th>Prenom(s)</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($personals as $personal)
+            <div class="table-responsive">
+                <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
+                    <thead>
                         <tr>
-                            <td>{{ $personal->matriculate }}</td>
-                            <td>{{ $personal->name }}</td>
-                            <td>{{ $personal->first_name }}</td>
+                            <th>Matricule</th>
+                            <th>Nom(s)</th>
+                            <th>Prenom(s)</th>
 
                         </tr>
-                    @endforeach
+                    </thead>
+                    <tbody>
+                        @foreach ($personals as $personal)
+                            <tr>
+                                <td>{{ $personal->matriculate }}</td>
+                                <td>{{ $personal->name }}</td>
+                                <td>{{ $personal->first_name }}</td>
 
-                </tbody>
-            </table>
+                            </tr>
+                        @endforeach
 
+                    </tbody>
+                </table>
 
+            </div>
 
 
 

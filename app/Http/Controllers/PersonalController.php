@@ -6,6 +6,7 @@ use App\Models\Evaluation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class PersonalController extends Controller
@@ -22,6 +23,13 @@ class PersonalController extends Controller
 
 
         return view('pages.personal.show', compact('personal'));
+    }
+
+    function show_evaluations($id)
+    {
+        $user = User::find($id);
+        $evaluations = Evaluation::where("id_personal", $id)->orderBy('created_at', 'desc')->get();
+        return view("pages.evaluation.show", compact('evaluations', 'user'));
     }
 
     function update(Request $request)
@@ -52,7 +60,15 @@ class PersonalController extends Controller
 
     function evaluation()
     {
-        $evaluations = Evaluation::all();
+        $latestEvaluations = DB::table('evaluations')
+            ->select('id_personal', DB::raw('MAX(created_at) as latest_evaluation_date'))
+            ->groupBy('id_personal')
+            ->get();
+
+        // Récupérer les évaluations complètes correspondant aux évaluations les plus récentes
+        $evaluations = Evaluation::whereIn('id_personal', $latestEvaluations->pluck('id_personal'))
+            ->whereIn('created_at', $latestEvaluations->pluck('latest_evaluation_date'))
+            ->get();
         return view('pages.evaluation.index', compact('evaluations'));
     }
 

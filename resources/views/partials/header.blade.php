@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}">
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/bundles/izitoast/css/iziToast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
@@ -49,7 +50,7 @@
                             <span class="d-sm-none d-lg-inline-block"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right pullDown">
-                            <div class="dropdown-title">Salut, {{ Auth::user()->name }}</div>
+                            <div class="dropdown-title">{{ Auth::user()->name }}</div>
                             {{-- <a href="profile.html" class="dropdown-item has-icon"> <i class="far
 										fa-user"></i>
                                 Profile
@@ -73,32 +74,23 @@
                     <div class="sidebar-brand">
                         <a href="index.html"> <img alt="image" src="{{ asset('assets/img/logo1.png') }}"
                                 class="header-logo" />
-                            <span class="logo-name">Evaluation</span>
+                            <span class="logo-name">Evaluations</span>
                         </a>
                     </div>
                     <ul class="sidebar-menu">
-                        <li class="menu-header">Main</li>
-                        @if (Auth::user()->role == 'personal')
-                            <li class="dropdown active">
-                                <a href="index.html" class="nav-link">
-                                    <i data-feather="monitor"></i>
-                                    <span>Dashboard</span>
-                                </a>
-                            </li>
-                        @endif
 
                         @if (Auth::user()->role !== 'personal')
                             <li class="{{ request()->is('/') ? 'dropdown active' : 'dropdown' }}">
                                 <a href="/" class="nav-link">
                                     <i data-feather="monitor"></i>
-                                    <span>Dashboard</span>
+                                    <span> Tableau de bord</span>
                                 </a>
                             </li>
 
                             <li class="{{ request()->is('evaluation') ? 'dropdown active' : 'dropdown' }}">
                                 <a href="/evaluation" class="nav-link">
                                     <i data-feather="grid"></i>
-                                    <span>Evaluation</span>
+                                    <span>Evaluations</span>
                                 </a>
                             </li>
 
@@ -110,7 +102,7 @@
                                     <li><a class="nav-link" href="/personal">Liste du personnel</a></li>
                                 </ul>
                             </li>
-
+                            {{--
                             <li class="{{ request()->is('evaluator') ? 'dropdown active' : 'dropdown' }}">
                                 <a href="#" class="menu-toggle nav-link has-dropdown"><i
                                         data-feather="command"></i><span>Evaluateurs</span></a>
@@ -118,7 +110,7 @@
                                     <li><a class="nav-link" href="/evaluator/create">Ajouter un evaluateur</a></li>
                                     <li><a class="nav-link" href="/evaluator">Liste des evaluateurs</a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
                             <li class="{{ request()->is('admin') ? 'dropdown active' : 'dropdown' }}">
                                 <a href="#" class="menu-toggle nav-link has-dropdown"><i

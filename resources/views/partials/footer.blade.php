@@ -29,6 +29,17 @@
 <script src="{{ asset('assets/js/scripts.js') }}"></script>
 <!-- Custom JS File -->
 <script src="{{ asset('assets/js/custom.js') }}"></script>
+<script src="{{ asset('assets/bundles/izitoast/js/iziToast.min.js') }}"></script>
+<script src="{{ asset('assets/js/page/toastr.js') }}"></script>
+<script>
+    @if (session('success'))
+        iziToast.success({
+            title: '',
+            message: "{{ session('success') }}",
+            position: 'topRight'
+        });
+    @endif
+</script>
 </body>
 
 
