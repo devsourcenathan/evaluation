@@ -9,7 +9,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>Systeme d'évaluation du Personnel</title>
     <!-- General CSS Files -->
-    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/favicon.ico') }}" />
+    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/logo1.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}">
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -82,21 +82,21 @@
                         @if (Auth::user()->role !== 'personal')
                             <li class="{{ request()->is('/') ? 'dropdown active' : 'dropdown' }}">
                                 <a href="/" class="nav-link">
-                                    <i data-feather="monitor"></i>
+                                    <i class="fa fa-home"></i>
                                     <span> Tableau de bord</span>
                                 </a>
                             </li>
 
                             <li class="{{ request()->is('evaluation') ? 'dropdown active' : 'dropdown' }}">
                                 <a href="/evaluation" class="nav-link">
-                                    <i data-feather="grid"></i>
+                                    <i class="fas fa-chalkboard-teacher"></i>
                                     <span>Evaluations</span>
                                 </a>
                             </li>
 
                             <li class="{{ request()->is('personal') ? 'dropdown active' : 'dropdown' }}">
                                 <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                                        data-feather="layout"></i><span>Personnel</span></a>
+                                        class="fas fa-users"></i><span>Personnel</span></a>
                                 <ul class="dropdown-menu">
                                     <li><a class="nav-link" href="/personal/create">Ajouter un personnel</a></li>
                                     <li><a class="nav-link" href="/personal">Liste du personnel</a></li>
@@ -114,7 +114,7 @@
 
                             <li class="{{ request()->is('admin') ? 'dropdown active' : 'dropdown' }}">
                                 <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                                        data-feather="user-check"></i><span>Administrateurs</span></a>
+                                        class="fas fa-user-tie"></i><span>Administrateurs</span></a>
                                 <ul class="dropdown-menu">
                                     <li><a class="nav-link" href="/admin/create">Ajouter un administrateur</a></li>
                                     <li><a class="nav-link" href="/admin">Liste des administrateurs</a></li>

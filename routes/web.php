@@ -52,6 +52,7 @@ Route::group(['prefix' => 'personal', 'middleware' => ['auth', 'user.type']], fu
     Route::get('/', [PersonalController::class, 'index']);
     Route::get('/create', [PersonalController::class, 'create']);
     Route::post('/', [PersonalController::class, 'store']);
+    Route::post('/update', [PersonalController::class, 'update_personal']);
     Route::get('/{id}', [PersonalController::class, 'show']);
     Route::put('/', [PersonalController::class, 'update']);
     Route::delete('/{id}', [PersonalController::class, 'destroy']);

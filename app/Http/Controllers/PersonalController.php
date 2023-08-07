@@ -58,6 +58,32 @@ class PersonalController extends Controller
         return redirect('/personal')->with('success', 'Le personnel a bien été modifié');
     }
 
+    function update_personal(Request $request)
+    {
+        $personal = User::find($request->id);
+        $personal->name = $request->name ?? $personal->name;
+        $personal->first_name = $request->first_name ?? $personal->first_name;
+        $personal->matriculate = $request->matriculate ?? $personal->matriculate;
+        $personal->note = $request->note ?? $personal->note;
+        $personal->gratification = $request->gratification ?? $personal->gratification;
+        if (isset($request->grade)) {
+            $personal->grade = $request->grade ?? $personal->grade;
+        }
+
+        if (isset($request->categorie)) {
+            $personal->categorie = $request->categorie ?? $personal->categorie;
+        }
+        $personal->email = $request->email ?? $personal->email;
+
+        if (isset($request->password)) {
+            $personal->password = Hash::make($request->password) ?? $personal->password;
+        }
+
+        $personal->save();
+
+        return redirect('/personal')->with('success', 'Le personnel a bien été modifié');
+    }
+
     function evaluation()
     {
         $latestEvaluations = DB::table('evaluations')
