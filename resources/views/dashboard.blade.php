@@ -93,6 +93,7 @@
                                         <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
                                             <thead>
                                                 <tr class="text-center">
+                                                    <th>Noms</th>
                                                     <th>Note</th>
                                                     <th>Taux de gratification</th>
                                                     <th>Evaluateur</th>
@@ -101,7 +102,6 @@
                                                     <th>Incidence des retards et absences</th>
                                                     <th>Incidence de la sanction sur l'evaluation generale</th>
                                                     <th>Date</th>
-                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -114,9 +114,7 @@
                                                     @endphp
                                                     <tr class="text-align: center">
 
-                                                        <td>{{ $personal->matriculate }}</td>
                                                         <td>{{ $personal->name }}</td>
-                                                        <td>{{ $personal->first_name }}</td>
                                                         <td>{{ $evaluation->note }}</td>
                                                         <td>{{ $evaluation->taux }} %</td>
                                                         <td>{{ $evaluator->name ?? '-' }}</td>
@@ -130,12 +128,7 @@
                                                                 Pas d'incidence
                                                             @endforelse
                                                         </td>
-                                                        <td>{{ Carbon::parse($evaluation->created_at)->locale('fr_FR')->isoFormat('MMM Y') }}
-                                                        </td>
-                                                        <td>
-                                                            <a class="btn btn-primary"
-                                                                href="/evaluation/{{ $personal->id }}">Revaluer</a>
-
+                                                        <td>{{ ucwords(Carbon::parse($evaluation->created_at)->locale('fr_FR')->isoFormat('MMM Y')) }}
                                                         </td>
                                                     </tr>
                                                 @endforeach

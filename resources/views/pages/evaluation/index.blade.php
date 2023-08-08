@@ -55,7 +55,8 @@
                                     @endforelse
                                 </td>
                                 <td style="text-transform: capitalize">
-                                    {{ Carbon::parse($evaluation->created_at)->locale('fr_FR')->isoFormat('MMM Y') }}</td>
+                                    {{ ucwords(Carbon::parse($evaluation->created_at)->locale('fr_FR')->isoFormat('MMM Y')) }}
+                                </td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary">Actions</button>

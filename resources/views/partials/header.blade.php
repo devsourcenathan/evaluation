@@ -50,7 +50,7 @@
                             <span class="d-sm-none d-lg-inline-block"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right pullDown">
-                            <div class="dropdown-title">{{ Auth::user()->name }}</div>
+                            <div class="dropdown-title">{{ Auth::user()->name }} {{ Auth::user()->first_name }}</div>
                             {{-- <a href="profile.html" class="dropdown-item has-icon"> <i class="far
 										fa-user"></i>
                                 Profile
@@ -79,7 +79,7 @@
                     </div>
                     <ul class="sidebar-menu">
 
-                        @if (Auth::user()->role !== 'personal')
+                        @if (Auth::user()->type !== 'personal')
                             <li class="{{ request()->is('/') ? 'dropdown active' : 'dropdown' }}">
                                 <a href="/" class="nav-link">
                                     <i class="fa fa-home"></i>

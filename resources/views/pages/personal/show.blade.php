@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label for="exampleInputRounded0">Matricule </label>
-                    <input type="text" name="matriculate" disabled class="form-control rounded-0"
+                    <input type="text" name="matriculate" class="form-control rounded-0"
                         value="{{ $personal->matriculate }}" id="exampleInputRounded0" placeholder="Matricule">
                 </div>
 

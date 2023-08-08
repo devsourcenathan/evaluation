@@ -53,7 +53,8 @@
                                     @endforelse
                                 </td>
                                 <td style="text-transform: capitalize">
-                                    {{ Carbon::parse($evaluation->created_at)->locale('fr_FR')->isoFormat('MMM Y') }}</td>
+                                    {{ ucwords(Carbon::parse($evaluation->created_at)->locale('fr_FR')->isoFormat('MMM Y')) }}
+                                </td>
 
                             </tr>
                         @endforeach
