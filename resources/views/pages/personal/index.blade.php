@@ -39,6 +39,8 @@
                                         <div class="dropdown-menu" role="menu">
                                             <a class="dropdown-item" href="/evaluation/{{ $personal->id }}">Evaluer</a>
                                             <a class="dropdown-item" href="/personal/{{ $personal->id }}">Modifier</a>
+                                            <a class="dropdown-item"
+                                                href="/personal/delete/{{ $personal->id }}">Supprimer</a>
                                         </div>
                                     </div>
                                 </td>

@@ -10,7 +10,7 @@ class EvaluatorController extends Controller
 {
     function index()
     {
-        $personals = User::where("type", "evaluator")->get();
+        $personals = User::where("type", "evaluator")->where('status', 'active')->get();
         return view('pages.evaluator.index', compact('personals'));
     }
 

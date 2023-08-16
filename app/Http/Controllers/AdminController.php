@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     function index()
     {
-        $personals = User::where("type", "!=", "personal")->get();
+        $personals = User::where("type", "=", "admin")->where('status', 'active')->get();
         return view('pages.admin.index', compact('personals'));
     }
 

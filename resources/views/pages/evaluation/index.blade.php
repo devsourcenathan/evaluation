@@ -36,45 +36,48 @@
                                 $personal = User::where('id', $evaluation->id_personal)->first();
                                 $sanctions = unserialize($evaluation->sanctions);
                             @endphp
-                            <tr class="text-align: center">
-                                <td>{{ $personal->matriculate }}</td>
-                                <td>{{ $personal->name }}</td>
-                                <td>{{ $personal->first_name }}</td>
-                                <td>{{ $evaluation->note }}</td>
-                                <td>{{ $evaluation->taux }} %</td>
-                                <td>{{ $evaluator->name ?? '-' }}</td>
-                                <td>{{ $evaluation->objectifs ?? 'Pas d\'incidence' }}</td>
-                                <td>{{ $evaluation->respects ?? 'Pas d\'incidence' }}</td>
-                                <td>{{ $evaluation->incidences ?? 'Pas d\'incidence' }}</td>
-                                <td>
-                                    @forelse ($sanctions as $item)
-                                        {{ ucwords(str_replace('_', ' ', $item)) }}
-                                        <br>
-                                    @empty
-                                        Pas d'incidence
-                                    @endforelse
-                                </td>
-                                <td style="text-transform: capitalize">
-                                    {{ ucwords(Carbon::parse($evaluation->created_at)->locale('fr_FR')->isoFormat('MMM Y')) }}
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary">Actions</button>
-                                        <button type="button"
-                                            class="btn btn-primary dropdown-toggle dropdown-hover dropdown-icon"
-                                            data-toggle="dropdown">
-                                            <span class="sr-only"></span>
-                                        </button>
-                                        <div class="dropdown-menu" role="menu">
-                                            <a class="dropdown-item" href="/evaluation/{{ $personal->id }}">Revaluer</a>
-                                            <a class="dropdown-item" href="/evaluation/show/{{ $personal->id }}">
-                                                Evaluations precedantes</a>
+                            @if ($personal->status == 'active')
+                                <tr class="text-align: center">
+                                    <td>{{ $personal->matriculate }}</td>
+                                    <td>{{ $personal->name }}</td>
+                                    <td>{{ $personal->first_name }}</td>
+                                    <td>{{ $evaluation->note }}</td>
+                                    <td>{{ $evaluation->taux }} %</td>
+                                    <td>{{ $evaluator->name ?? ' ' }} {{ $evaluator->first_name ?? ' ' }}</td>
+                                    <td>{{ $evaluation->objectifs ?? 'Pas d\'incidence' }}</td>
+                                    <td>{{ $evaluation->respects ?? 'Pas d\'incidence' }}</td>
+                                    <td>{{ $evaluation->incidences ?? 'Pas d\'incidence' }}</td>
+                                    <td>
+                                        @forelse ($sanctions as $item)
+                                            {{ ucwords(str_replace('_', ' ', $item)) }}
+                                            <br>
+                                        @empty
+                                            Pas d'incidence
+                                        @endforelse
+                                    </td>
+                                    <td style="text-transform: capitalize">
+                                        {{ ucwords(Carbon::parse($evaluation->created_at)->locale('fr_FR')->isoFormat('MMM Y')) }}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary">Actions</button>
+                                            <button type="button"
+                                                class="btn btn-primary dropdown-toggle dropdown-hover dropdown-icon"
+                                                data-toggle="dropdown">
+                                                <span class="sr-only"></span>
+                                            </button>
+                                            <div class="dropdown-menu" role="menu">
+                                                <a class="dropdown-item"
+                                                    href="/evaluation/{{ $personal->id }}">Revaluer</a>
+                                                <a class="dropdown-item" href="/evaluation/show/{{ $personal->id }}">
+                                                    Evaluations precedantes</a>
+                                            </div>
                                         </div>
-                                    </div>
 
 
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
 
                     </tbody>

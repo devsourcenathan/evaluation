@@ -40,7 +40,7 @@
                             <tr class="text-align: center">
                                 <td>{{ $evaluation->note }}</td>
                                 <td>{{ $evaluation->taux }} %</td>
-                                <td>{{ $evaluator->name ?? '-' }}</td>
+                                <td>{{ $evaluator->name ?? ' ' }} {{ $evaluator->first_name ?? ' ' }}</td>
                                 <td>{{ $evaluation->objectifs ?? 'Pas d\'incidence' }}</td>
                                 <td>{{ $evaluation->respects ?? 'Pas d\'incidence' }}</td>
                                 <td>{{ $evaluation->incidences ?? 'Pas d\'incidence' }}</td>

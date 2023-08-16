@@ -3,9 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EvaluatorController;
 use App\Http\Controllers\PersonalController;
-use App\Models\evaluation;
+use App\Models\Evaluation;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,11 +27,23 @@ Route::get('/', function () {
     } else {
         $evaluations = Evaluation::all();
     }
-    $evaluators = User::where("type", "evaluator")->get()->count();
-    $admins = User::where("type", "admin")->get()->count();
-    $personals = User::where("type", "personal")->get()->count();
-    $evaluations_count = Evaluation::all()->count();
-    return view('dashboard', compact('evaluations', 'evaluators', 'admins', 'personals', 'evaluations_count'));
+    $evaluators = User::where("type", "evaluator")->where("status", "active")->get()->count();
+    $admins = User::where("type", "admin")->where("status", "active")->get()->count();
+    $personals = User::where("type", "personal")->where("status", "active")->get()->count();
+    $evaluations_count = Evaluation::join(DB::raw('(SELECT id_personal, MAX(taux) AS taux_max FROM evaluations GROUP BY id_personal) subquery'), function ($join) {
+        $join->on('evaluations.id_personal', '=', 'subquery.id_personal')
+            ->where('evaluations.taux', '>', 'subquery.taux_max');
+    })
+        ->distinct('evaluations.id_personal')
+        ->count('evaluations.id_personal');
+    $baisses = Evaluation::join(DB::raw('(SELECT id_personal, MAX(taux) AS taux_max FROM evaluations GROUP BY id_personal) subquery'), function ($join) {
+        $join->on('evaluations.id_personal', '=', 'subquery.id_personal')->where('evaluations.taux', '<', 'subquery.taux_max');
+    })->distinct('evaluations.id_personal')->count('evaluations.id_personal');
+
+    $constant = Evaluation::join(DB::raw('(SELECT id_personal, MAX(taux) AS taux_max FROM evaluations GROUP BY id_personal) subquery'), function ($join) {
+        $join->on('evaluations.id_personal', '=', 'subquery.id_personal')->where('evaluations.taux', '=', 'subquery.taux_max');
+    })->distinct('evaluations.id_personal')->count('evaluations.id_personal');
+    return view('dashboard', compact('evaluations', 'evaluators', 'admins', 'personals', 'evaluations_count', 'baisses', 'constant'));
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/dashboard', function () {
@@ -40,11 +53,21 @@ Route::get('/dashboard', function () {
     } else {
         $evaluations = Evaluation::all();
     }
-    $evaluators = User::where("type", "evaluator")->get()->count();
-    $admins = User::where("type", "admin")->get()->count();
-    $personals = User::where("type", "personal")->get()->count();
-    $evaluations_count = Evaluation::all()->count();
-    return view('dashboard', compact('evaluations', 'evaluators', 'admins', 'personals', 'evaluations_count'));
+    $evaluators = User::where("type", "evaluator")->where("status", "active")->get()->count();
+    $admins = User::where("type", "admin")->where("status", "active")->get()->count();
+    $personals = User::where("type", "personal")->where("status", "active")->get()->count();
+    $evaluations_count = Evaluation::join(DB::raw('(SELECT id_personal, MAX(taux) AS taux_max FROM evaluations GROUP BY id_personal) subquery'), function ($join) {
+        $join->on('evaluations.id_personal', '=', 'subquery.id_personal')->where('evaluations.taux', '>', 'subquery.taux_max');
+    })->distinct('evaluations.id_personal')->count('evaluations.id_personal');
+
+    $baisses = Evaluation::join(DB::raw('(SELECT id_personal, MAX(taux) AS taux_max FROM evaluations GROUP BY id_personal) subquery'), function ($join) {
+        $join->on('evaluations.id_personal', '=', 'subquery.id_personal')->where('evaluations.taux', '<', 'subquery.taux_max');
+    })->distinct('evaluations.id_personal')->count('evaluations.id_personal');
+
+    $constant = Evaluation::join(DB::raw('(SELECT id_personal, MAX(taux) AS taux_max FROM evaluations GROUP BY id_personal) subquery'), function ($join) {
+        $join->on('evaluations.id_personal', '=', 'subquery.id_personal')->where('evaluations.taux', '=', 'subquery.taux_max');
+    })->distinct('evaluations.id_personal')->count('evaluations.id_personal');
+    return view('dashboard', compact('evaluations', 'evaluators', 'admins', 'personals', 'evaluations_count', 'baisses', 'constant'));
 })->middleware(['auth']);
 
 Route::group(['prefix' => 'personal', 'middleware' => ['auth', 'user.type']], function () {
@@ -56,6 +79,7 @@ Route::group(['prefix' => 'personal', 'middleware' => ['auth', 'user.type']], fu
     Route::get('/{id}', [PersonalController::class, 'show']);
     Route::put('/', [PersonalController::class, 'update']);
     Route::delete('/{id}', [PersonalController::class, 'destroy']);
+    Route::get('/delete/{id}', [PersonalController::class, 'delete']);
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'user.type']], function () {

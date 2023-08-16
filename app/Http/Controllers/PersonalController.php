@@ -13,7 +13,7 @@ class PersonalController extends Controller
 {
     function index()
     {
-        $personals = User::where("type", "personal")->get();
+        $personals = User::where("type", "personal")->where('status', 'active')->get();
         return view('pages.personal.index', compact('personals'));
     }
 
@@ -23,6 +23,15 @@ class PersonalController extends Controller
 
 
         return view('pages.personal.show', compact('personal'));
+    }
+
+    function delete($id)
+    {
+        $personal = User::find($id);
+        $personal->status = "deleted";
+        $personal->save();
+
+        return redirect('/personal')->with('success', 'Le personnel a bien été supprimé');
     }
 
     function show_evaluations($id)
@@ -276,6 +285,13 @@ class PersonalController extends Controller
             }
         }
 
+        if ($note > 20) {
+            $note = 20;
+        }
+
+        if ($graduation > 120) {
+            $graduation = 120;
+        }
         $personal->note = $note;
         $personal->gratification = $graduation;
         $personal->id_evaluator = Auth::user()->id;

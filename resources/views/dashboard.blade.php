@@ -15,8 +15,52 @@
                                 <div class="row" style="height: 150px !important">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                         <div class="card-content text-center">
-                                            <h5 class="font-4">Evaluations</h5>
+                                            <h5 class="font-5">Total augmentations</h5>
                                             <h2 class="mb-3 font-18">{{ $evaluations_count }}</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                                        <div class="banner-img">
+                                            <img src="assets/img/dashboard/up.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="card">
+                        <div class="card-statistic-4">
+                            <div class="align-items-center justify-content-between">
+                                <div class="row" style="height: 150px !important">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                                        <div class="card-content text-center">
+                                            <h5 class="font-5">Total reductions</h5>
+                                            <h2 class="mb-3 font-18">{{ $baisses }}</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                                        <div class="banner-img">
+                                            <img src="assets/img/dashboard/down.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="card">
+                        <div class="card-statistic-4">
+                            <div class="align-items-center justify-content-between">
+                                <div class="row" style="height: 150px !important">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
+                                        <div class="card-content text-center">
+                                            <h5 class="font-5">Total constant</h5>
+                                            <h2 class="mb-3 font-18">{{ $constant }}</h2>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -114,7 +158,7 @@
                                                     @endphp
                                                     <tr class="text-align: center">
 
-                                                        <td>{{ $personal->name }}</td>
+                                                        <td>{{ $personal->name }} {{ $personal->first_name }}</td>
                                                         <td>{{ $evaluation->note }}</td>
                                                         <td>{{ $evaluation->taux }} %</td>
                                                         <td>{{ $evaluator->name ?? '-' }}</td>
