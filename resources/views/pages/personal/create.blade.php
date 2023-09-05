@@ -58,15 +58,18 @@
 
                 <div class="form-group">
                     <label for="exampleInputRounded0">Note Actuelle</label>
-                    <input name="note" type="number" required class="form-control rounded-0" id="exampleInputRounded0"
-                        placeholder="Note de base de l'Agent">
+                    <input type="text" required inputmode="decimal" id="float-input" name="note"
+                        class="form-control rounded-0" id="exampleInputRounded0" placeholder="Note de base de l'Agent"
+                        pattern="[0-9]*[.,]?[0-9]*">
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputRounded0">Taux de Gratification Actuelle</label>
-                    <input name="gratification" type="number" required class="form-control rounded-0"
-                        id="exampleInputRounded0" placeholder="Taux de Gratification Actuelle en %">
+                    <input type="text" required inputmode="decimal" id="float-input" name="gratification"
+                        class="form-control rounded-0" id="exampleInputRounded0"
+                        placeholder="Taux de Gratification Actuelle en %" pattern="[0-9]*[.,]?[0-9]*">
                 </div>
+
 
                 <div class="form-group">
                     <label for="exampleInputRounded0">Email</label>

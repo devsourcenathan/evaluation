@@ -29,6 +29,7 @@ class PersonalController extends Controller
     {
         $personal = User::find($id);
         $personal->status = "deleted";
+        $personal->email = $personal->email . "-deleted";
         $personal->save();
 
         return redirect('/personal')->with('success', 'Le personnel a bien été supprimé');
